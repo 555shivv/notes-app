@@ -14,14 +14,13 @@ function App() {
     <NoteState>
     <BrowserRouter>
       <Navbar/>
-      <Alert message="this is amzaing"/>
       <div className="container">
       
       <Routes>
         <Route exact path="/" element={<Home/>}></Route>
         <Route exact path="/about" element={<About/>}></Route>
-        <Route path="/login" element={<Login/>} ></Route>
-        <Route path="/signup" element={<Signup/>} ></Route>
+        <Route exact path="/login" element={<Login/>} ></Route>
+        <Route exact path="/signup" element={<Signup/>} ></Route>
       </Routes>
       </div>
 </BrowserRouter>
