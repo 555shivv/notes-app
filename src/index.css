@@ -14,3 +14,18 @@ code {
 i{
   cursor: pointer;
 }
+/* src/index.css */
+:root {
+  --background: #fff;
+  --color: #000;
+}
+
+[data-theme='dark'] {
+  --background: #333;
+  --color: #fff;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--color);
+}

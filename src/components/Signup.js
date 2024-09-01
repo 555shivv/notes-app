@@ -1,10 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { ThemeProvider } from '../context/ThemeContext';
 
 const Signup = () => {
   return (
+    
     <Container>
+    <ThemeProvider>
       <Form>
         <Title>Sign Up</Title>
         <Input type="text" placeholder="Username" />
@@ -13,7 +16,9 @@ const Signup = () => {
         <Button>Sign Up</Button>
         <Text>Already have an account? <StyledLink to="/login">Login</StyledLink></Text>
       </Form>
+      </ThemeProvider>
     </Container>
+    
   );
 }
 

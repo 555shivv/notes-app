@@ -2,15 +2,22 @@ import './App.css';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
 import About from './components/About';
-import Alert from './components/Alert';
+import GlobalStyle from './globalStyles';
+import { useTheme } from './context/ThemeContext'
+import { lightTheme, darkTheme } from './Themes';
+import { ThemeProvider as StyledThemeProvider } from 'styled-components';
 import { BrowserRouter,Routes, Route } from 'react-router-dom';
 import NoteState from './context/notes/NoteState';
 import Login from './components/Login';
 import Signup from './components/Signup';
 
 function App() {
+  const { darkMode } = useTheme();
+  const theme = darkMode ? darkTheme : lightTheme;
+
   return (
-    <>
+    <StyledThemeProvider theme={theme}>
+    <GlobalStyle />
     <NoteState>
     <BrowserRouter>
       <Navbar/>
@@ -25,7 +32,7 @@ function App() {
       </div>
 </BrowserRouter>
 </NoteState>
-    </>
+    </StyledThemeProvider>
   );
 }
 

@@ -1,10 +1,12 @@
 import React,{useContext} from "react";
 import noteContext  from "../context/notes/noteContext";
+import { ThemeProvider } from "../context/ThemeContext";
 const NoteItem = (props) => {
   const context = useContext(noteContext);
   const {deleteNote} = context;
   const { note, updateNote} = props;
   return (
+    <ThemeProvider>
     <div className="col md-3 my-3">
       <div className="card">
         <div className="card-body">
@@ -18,6 +20,7 @@ const NoteItem = (props) => {
         </div>
       </div>
     </div>
+    </ThemeProvider>
   );
 };
 

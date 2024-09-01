@@ -30,7 +30,7 @@ const Login = (props) => {
     };
 
     return (
-        <div className="col-md-12 row-mb-5">
+        <div className="container col-md-12 row-mb-5 mt-5">
             <form onSubmit={handleSubmit} className=" row-mb-5 col-md-12">
                 <div className="mb-3 col-md-12">
                     <label htmlFor="email" className="form-label">Email address</label>

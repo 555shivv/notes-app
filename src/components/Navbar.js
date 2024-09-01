@@ -1,14 +1,49 @@
 import React,{useEffect} from 'react';
 import {Link,useLocation} from 'react-router-dom';
+import { useTheme } from '../context/ThemeContext';
+import styled, { ThemeProvider as StyledThemeProvider } from 'styled-components';
+
+const lightTheme = {
+  background: '#fff',
+  color: '#000',
+};
+
+const darkTheme = {
+  background: '#333',
+  color: '#fff',
+};
+
+const NavbarWrapper = styled.nav`
+  background: ${({ theme }) => theme.background};
+  color: ${({ theme }) => theme.color};
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const ToggleButton = styled.button`
+  background: ${({ theme }) => theme.color};
+  color: ${({ theme }) => theme.background};
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+`;
+
 const Navbar = () => {
     const location = useLocation();
+    const { darkMode, toggleDarkMode } = useTheme();
+    const theme = darkMode ? darkTheme : lightTheme;
     useEffect(() => {
         document.title = location.pathname;
         }, [location]);
 
   return (
-    <div>
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+    <StyledThemeProvider theme={theme}>
+  
+    
+      <NavbarWrapper className='bg-primary mb-1'>
+      <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
   <div className="container-fluid">
     <Link className="navbar-brand" to="/">iNoteBook</Link>
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,12 +63,18 @@ const Navbar = () => {
         <li className="nav-item">
           <Link className={`nav-link ${location.pathname==="/Signup"?"active":""}`} aria-current="page" to="/Signup">Signup</Link>
         </li>
+        <li>
+        <ToggleButton onClick={toggleDarkMode} className="ml-auto">
+          {darkMode ? 'Light Mode' : 'Dark Mode'}
+        </ToggleButton>
+        </li>
       </ul>
       
     </div>
   </div>
 </nav>
-    </div>
+</NavbarWrapper>
+    </StyledThemeProvider>
   )
 }
 
